@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: router-graphql
+  labels:
+    app: router-graphql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: router-graphql
+  template:
+    metadata:
+      labels:
+        app: router-graphql
+    spec:
+      containers:
+      - name: router-graphql
+        image: docker.io/kkr3k/router-graphql:latest
+        ports:
+        - containerPort: 4000
+        env:
+        - name: APOLLO_KEY
+          value: "service:travel-apos-team-pzlijc:F_wkjsBSlUHAJvfQ8wP1Pg"
+        - name: APOLLO_GRAPH_REF
+          value: "travel-apos-team-pzlijc@main"            
